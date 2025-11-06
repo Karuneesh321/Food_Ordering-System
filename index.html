@@ -1,13 +1,106 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>landshare-app</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FoodHub - Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <div class="logo">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+          <path d="M6 6l12 12" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M18 6l-12 12" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <h1>FoodHub</h1>
+      </div>
+      <p class="tagline">Order from the best restaurants near you. Fast delivery, great taste!</p>
+
+      <div class="search-row">
+        <div class="search">
+          <svg class="search-icon" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+          <input id="searchInput" placeholder="Search for restaurants or cuisines..." />
+        </div>
+
+        <button id="cartBtn" class="cart-btn" title="View Cart">
+          <svg viewBox="0 0 24 24"><path d="M6 6h14l-1.4 8.2a2 2 0 0 1-2 1.8H9.4a2 2 0 0 1-2-1.6L6 6z" fill="currentColor"/></svg>
+          <span id="cartCount" class="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <section id="homeView" class="home-view">
+      <h2 class="section-title">Nearby Restaurants</h2>
+      <div id="cards" class="cards-grid"></div>
+    </section>
+
+    <section id="checkoutView" class="checkout-view hidden">
+      <button id="backToMenu" class="back-btn">← Back to Menu</button>
+
+      <div class="checkout-grid">
+        <aside class="checkout-panel">
+          <h3>Checkout</h3>
+
+          <div class="card form-card">
+            <h4>Delivery Details</h4>
+            <label>Full Name
+              <input id="fullname" type="text" placeholder="John Doe" />
+            </label>
+            <label>Phone Number
+              <input id="phone" type="tel" placeholder="+1 (555) 000-0000" />
+            </label>
+            <label>Delivery Address
+              <input id="address" type="text" placeholder="123 Main St, Apt 4B" />
+            </label>
+          </div>
+
+          <div class="card form-card">
+            <h4>Payment Method</h4>
+            <label class="radio-row"><input name="pay" type="radio" value="card" checked /> <span>Credit/Debit Card</span></label>
+            <label class="radio-row"><input name="pay" type="radio" value="cod" /> <span>Cash on Delivery</span></label>
+          </div>
+
+          <button id="placeOrder" class="primary wide">Place Order</button>
+        </aside>
+
+        <aside class="summary-panel card">
+          <h4>Order Summary</h4>
+          <div id="orderList" class="order-list"></div>
+          <div class="divider"></div>
+
+          <div class="summary-line"><span>Subtotal</span><span id="subtotalAmt">₹0.00</span></div>
+          <div class="summary-line"><span>Delivery Fee</span><span id="deliveryFeeAmt">₹0.00</span></div>
+          <div class="summary-line"><span>GST (5%)</span><span id="gstAmt">₹0.00</span></div>
+
+          <div class="divider"></div>
+          <div class="summary-line total"><strong>Total</strong><strong id="totalAmt">₹0.00</strong></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <template id="cardTpl">
+    <div class="card rest-card">
+      <img class="thumb" alt="restaurant" />
+      <div class="card-body">
+        <div class="card-top">
+          <h3 class="name"></h3>
+          <div class="rating"><svg viewBox="0 0 24 24"><path d="M12 .9l3.1 6.3 7 .6-5 4.6 1.6 6.4L12 16.8 4.3 19.8 5.9 13.4 1 8.8l7-.6L12 .9z" fill="currentColor"/></svg><span class="val"></span></div>
+        </div>
+        <p class="cuisine"></p>
+        <div class="card-actions">
+          <div class="price">Avg ₹<span class="price-val"></span></div>
+          <button class="add-btn">Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
 </html>
