@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>To‑Do List</title>
+  <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="todo.css" />
+</head>
+<body>
+  <div class="app" role="application" aria-label="To‑Do List">
+    <header>
+      <div class="title">✅ To‑Do List <span class="badge" id="badge"></span></div>
+      <button id="exportBtn" class="btn ghost" title="Export tasks JSON" aria-label="Export tasks">Export</button>
+    </header>
+
+    <section class="card" aria-live="polite">
+      <div class="input-row">
+        <input id="newTask" type="text" maxlength="200" placeholder="What do you need to do? (Press Enter to add)" aria-label="New task" />
+        <button id="addBtn" class="btn primary" aria-label="Add task">Add</button>
+      </div>
+
+      <div class="controls">
+        <div class="filters" role="tablist" aria-label="Filters">
+          <button class="chip" data-filter="all" aria-pressed="true">All</button>
+          <button class="chip" data-filter="active" aria-pressed="false">Active</button>
+          <button class="chip" data-filter="completed" aria-pressed="false">Completed</button>
+        </div>
+        <div class="stats" id="stats">0 items</div>
+      </div>
+
+      <ul id="list"></ul>
+
+      <div class="empty" id="emptyState" hidden>
+        Your list is empty. Add your first task above ✨
+      </div>
+
+      <footer>
+        <div>
+          <button id="clearCompleted" class="btn ghost" aria-label="Clear completed tasks">Clear Completed</button>
+          <button id="markAll" class="btn ghost" aria-label="Toggle all tasks">Toggle All</button>
+        </div>
+        <small>Saved locally • Works offline</small>
+      </footer>
+    </section>
+  </div>
+
+  <template id="itemTemplate">
+    <li class="item" draggable="true">
+      <div class="checkbox"><input type="checkbox" aria-label="Mark complete"></div>
+      <div class="text">
+        <span class="task-label" tabindex="0"></span>
+        <span class="meta"></span>
+      </div>
+      <div class="actions">
+        <button class="icon-btn edit" title="Edit" aria-label="Edit task"><span class="icon">✏️</span></button>
+        <button class="icon-btn save" title="Save" aria-label="Save task" hidden><span class="icon">💾</span></button>
+        <button class="icon-btn delete" title="Delete" aria-label="Delete task"><span class="icon">🗑️</span></button>
+      </div>
+    </li>
+  </template>
+
+    <script src="todo.js"></script>
+</body>
+</html>
